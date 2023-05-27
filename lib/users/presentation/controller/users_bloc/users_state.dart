@@ -1,7 +1,9 @@
 part of 'users_bloc.dart';
 
  class UsersState extends Equatable {
-  final List<User> users;
+  @override
+  List<Object?> get props => [];
+ /* final List<User> users;
   final RequestState usersState;
   final String usersMessage;
   final RequestState deleteUserState;
@@ -33,6 +35,45 @@ part of 'users_bloc.dart';
     );
   }    
   @override
-  List<Object> get props => [users, usersState, usersMessage];
+  List<Object> get props => [users, usersState, usersMessage];*/
 }
+class UsersInitialState extends UsersState {
+  List<Object?> get props => [];
+}
+
+class UsersLoadingState extends UsersState {}
+
+class UsersSucessState extends UsersState {
+  final List<User> usersList;
+
+   UsersSucessState({required this.usersList});
+    @override
+  List<Object?> get props => [usersList];
+}
+ 
+class UsersFailerState extends UsersState {
+  final String usergMessage;
+
+   UsersFailerState({required this.usergMessage});
+     @override
+  List<Object?> get props => [usergMessage];
+}
+
+
+
+class DeleteUserFailerState extends UsersState {
+  final String usergMessage;
+
+   DeleteUserFailerState({required this.usergMessage});
+     @override
+  List<Object?> get props => [usergMessage];
+}
+
+class DeleteUserSucessState extends UsersState {
+
+    @override
+  List<Object?> get props => [];
+}
+
+
 

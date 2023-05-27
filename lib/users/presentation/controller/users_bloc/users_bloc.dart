@@ -14,8 +14,9 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   final GetUsersUseCase getUsersUseCase;
   final DeleteUserUseCase deleteUserUseCase;
 
-  UsersBloc(this.getUsersUseCase, this.deleteUserUseCase)
-      : super(const UsersState()) {
+  UsersBloc(this.getUsersUseCase, this.deleteUserUseCase
+  )
+      : super( UsersState()) {
     on<GetUsersEvent>(_getUsers);
     on<DeleteUserEvent>(_deleteUser);
   }
@@ -23,18 +24,23 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
   FutureOr<void> _getUsers(
       GetUsersEvent event, Emitter<UsersState> emit) async {
     final result = await getUsersUseCase(const NoParameters());
-    result.fold(
-        (l) => emit(state.copyWith(
-            usersMessage: l.errorMessage, usersState: RequestState.error)),
-        (r) => emit(state.copyWith(users: r, usersState: RequestState.loaded)));
+
+    result.fold((l) => emit(UsersFailerState(usergMessage: l.errorMessage)),
+        (r) => emit(UsersSucessState(usersList: r)));
   }
 
   FutureOr<void> _deleteUser(
       DeleteUserEvent event, Emitter<UsersState> emit) async {
     final result = await deleteUserUseCase(DeleteUserParameters(event.userId));
-    result.fold(
+
+    result.fold((l) => emit(DeleteUserFailerState(usergMessage: l.errorMessage)),
+        (r) => emit(DeleteUserSucessState()));
+
+
+    /*result.fold(
         (l) => emit(state.copyWith(
-            deleteUserMessage: l.errorMessage, deleteUserState: RequestState.error)),
-        (r) => emit(state.copyWith( deleteUserState: RequestState.loaded)));
+            deleteUserMessage: l.errorMessage,
+            deleteUserState: RequestState.error)),
+        (r) => emit(state.copyWith(deleteUserState: RequestState.loaded)));*/
   }
 }
