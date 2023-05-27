@@ -17,7 +17,7 @@ class EditUserScreen extends StatelessWidget {
             getIt<UserDetailsBloc>()..add(GetUserDetailsEvent(userId: userId)),
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Edit User'),
+            title:const  Text('Edit User'),
             centerTitle: true,
           ),
           body: BlocBuilder<UserDetailsBloc, UserDetailsState>(

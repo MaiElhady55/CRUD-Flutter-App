@@ -5,4 +5,5 @@ class ApiConstance {
 
   static const String endPointUser = 'users';
 
+  static String editPath(int id) => '$endPointUser/$id';
 }

@@ -26,12 +26,13 @@ class AddUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CreateUserBloc, CreateUserState>(
       listener: (context, state) {
-        if (state is CreateUserSuccess) {
-          showMySnackBar(
-              context: context, text: 'Add Successfuly', color: Colors.green);
-        } else {
+        if (state is CreateUserFailure) {
+          
           showMySnackBar(
               context: context, text: 'Add Failed', color: Colors.red);
+        } else {
+          showMySnackBar(
+              context: context, text: 'Add Successfuly', color: Colors.green);
         }
       },
       builder: (context, state) {

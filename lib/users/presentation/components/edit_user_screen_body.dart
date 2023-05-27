@@ -48,7 +48,7 @@ class EditUserScreenBody extends StatelessWidget {
         create: (context) => getIt<EditUserBloc>(),
         child: BlocConsumer<EditUserBloc, EditUserState>(
           listener: (context, state) {
-            if (status is EditUserState) {
+            if (status is EditUserSuccess) {
               showMySnackBar(
                   context: context,
                   text: 'Edit Successfuly',

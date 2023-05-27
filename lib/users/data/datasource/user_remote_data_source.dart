@@ -76,8 +76,7 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
   
   @override
   Future<UserModel> editUser(EditUserParameters parameters) async{
-    Response response =
-        await DioHelper.postData(endPoint: '${ApiConstance.endPointUser}/${parameters.userId}', data: {
+    Response response = await DioHelper.postData(endPoint: ApiConstance.editPath(parameters.userId), data: {
       'name': parameters.name,
       'email': parameters.email,
       'gender': parameters.gender,
