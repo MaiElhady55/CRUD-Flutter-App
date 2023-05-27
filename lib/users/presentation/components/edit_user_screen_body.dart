@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rise_up_task/core/utils/enum.dart';
-import 'package:rise_up_task/core/utils/enum.dart';
-import 'package:rise_up_task/core/utils/enum.dart';
 import 'package:rise_up_task/core/utils/size_config.dart';
 import 'package:rise_up_task/users/domain/entities/user.dart';
+import 'package:rise_up_task/users/presentation/components/custom_dropdownbutton.dart';
 import 'package:rise_up_task/users/presentation/components/custom_textformfield.dart';
 import 'package:rise_up_task/users/presentation/controller/user_details_bloc/bloc/user_details_bloc.dart';
 
@@ -23,6 +22,9 @@ class EditUserScreenBody extends StatelessWidget {
   final TextEditingController genderController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey();
+    List<String> gender = ["male", "female", "Other"];
+
+  List<String> status = ["active", "inactive"];
   @override
   Widget build(BuildContext context) {
     var height = SizeConfig.height(context);
@@ -77,9 +79,36 @@ class EditUserScreenBody extends StatelessWidget {
                     },
                     textInputAction: TextInputAction.next,
                   ),
+                                    const SizedBox(
+                    height: 16,
+                  ),
+                  CustomTextFormField(
+                    controller: genderController,
+                    hintText: 'Gender',
+                    type: TextInputType.none,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Gender field cant not be empty';
+                      }
+                    },
+                    textInputAction: TextInputAction.next,
+                    suffixIcon: CustomDropDownButton(controller: genderController,items: gender,)
+                  ),
                   const SizedBox(
                     height: 16,
-                  )
+                  ),
+                  CustomTextFormField(
+                    controller: statusController,
+                    hintText: 'Status',
+                    type: TextInputType.none,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Status field cant not be empty';
+                      }
+                    },
+                    textInputAction: TextInputAction.done,
+                    suffixIcon: CustomDropDownButton(items: status,controller: statusController,)
+                  ),
                 ]))));
   }
 }
