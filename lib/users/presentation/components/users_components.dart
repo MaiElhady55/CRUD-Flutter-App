@@ -5,6 +5,7 @@ import 'package:rise_up_task/core/utils/enum.dart';
 import 'package:rise_up_task/users/presentation/components/custom_icon_button.dart';
 import 'package:rise_up_task/users/presentation/components/show_dialog.dart';
 import 'package:rise_up_task/users/presentation/controller/users_bloc/users_bloc.dart';
+import 'package:rise_up_task/users/presentation/screens/edit_user_screen.dart';
 import 'package:rise_up_task/users/presentation/screens/user_details_screen.dart';
 
 class UsersComponents extends StatelessWidget {
@@ -50,15 +51,20 @@ class UsersComponents extends StatelessWidget {
                               children: [
                                 CustomIconButton(
                                     color: Colors.blue,
-                                    function: () {},
+                                    function: () {
+                                      navigateTo(
+                                          context: context,
+                                          router: EditUserScreen(
+                                              userId: state.users[index].id));
+                                    },
                                     icon: Icons.edit),
                                 CustomIconButton(
                                     color: Colors.red,
                                     function: () {
                                       showDeleteDialog(context, () {
                                         BlocProvider.of<UsersBloc>(context).add(
-                                          DeleteUserEvent(userId: state.users[index].id)
-                                        );
+                                            DeleteUserEvent(
+                                                userId: state.users[index].id));
                                       });
                                     },
                                     icon: Icons.delete)
