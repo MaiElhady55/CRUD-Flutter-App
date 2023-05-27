@@ -19,7 +19,7 @@ class UsersComponents extends StatelessWidget {
             child: Text(state.usergMessage),
           );
         } else if (state is UsersSucessState) {
-          ListView.builder(
+          return ListView.builder(
             itemCount: state.usersList.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
@@ -63,6 +63,7 @@ class UsersComponents extends StatelessWidget {
                                           DeleteUserEvent(
                                               userId:
                                                   state.usersList[index].id));
+                                      Navigator.pop(context);
                                     });
                                   },
                                   icon: Icons.delete)
@@ -75,7 +76,6 @@ class UsersComponents extends StatelessWidget {
             },
           );
         }
-
         return const Center(child: CircularProgressIndicator());
       },
     );

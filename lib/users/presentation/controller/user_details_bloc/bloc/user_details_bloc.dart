@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:rise_up_task/core/utils/enum.dart';
 import 'package:rise_up_task/users/domain/entities/user.dart';
 import 'package:rise_up_task/users/domain/usecases/get_user_details.dart';
-import 'package:rise_up_task/users/presentation/controller/users_bloc/users_bloc.dart';
 
 part 'user_details_event.dart';
 part 'user_details_state.dart';

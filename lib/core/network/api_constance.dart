@@ -5,5 +5,4 @@ class ApiConstance {
 
   static const String endPointUser = 'users';
 
-  static String userDetailsPath(int userId) => '$endPointUser/$userId';
 }

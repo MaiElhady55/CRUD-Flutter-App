@@ -6,6 +6,7 @@ import 'package:rise_up_task/core/network/error_message_model.dart';
 import 'package:rise_up_task/users/data/models/user_model.dart';
 import 'package:rise_up_task/users/domain/usecases/create_user.dart';
 import 'package:rise_up_task/users/domain/usecases/delete_user.dart';
+import 'package:rise_up_task/users/domain/usecases/edit_user.dart';
 import 'package:rise_up_task/users/domain/usecases/get_user_details.dart';
 
 abstract class BaseUserRemoteDataSource {
@@ -13,6 +14,8 @@ abstract class BaseUserRemoteDataSource {
   Future<UserModel> creatUser(CreateUserParameters parameters);
   Future<UserModel> getUserDetails(UserDetailsParameters parameters);
   Future<void> deleteUser(DeleteUserParameters parameters);
+  Future<UserModel> editUser(EditUserParameters parameters);
+
 }
 
 class UserRemoteDataSource extends BaseUserRemoteDataSource {
@@ -68,5 +71,23 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
   Future<void> deleteUser(DeleteUserParameters parameters) async {
  await DioHelper.deleteData(
         endPoint: '${ApiConstance.endPointUser}/${parameters.userId}');
+    
+  }
+  
+  @override
+  Future<UserModel> editUser(EditUserParameters parameters) async{
+    Response response =
+        await DioHelper.postData(endPoint: '${ApiConstance.endPointUser}/${parameters.userId}', data: {
+      'name': parameters.name,
+      'email': parameters.email,
+      'gender': parameters.gender,
+      'status': parameters.status
+    });
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+          errorMessageModel: ErrorMessageModel.fromJson(response.data));
+    }
   }
 }

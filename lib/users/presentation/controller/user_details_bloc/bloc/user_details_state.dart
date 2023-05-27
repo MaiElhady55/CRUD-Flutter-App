@@ -24,7 +24,5 @@ part of 'user_details_bloc.dart';
       userDetailsMessage: userDetailsMessage?? this.userDetailsMessage
     );
   }    
-  //@override
-  //List<Object> get props => [user!, userDetailsState, userDetailsMessage];
 }
 

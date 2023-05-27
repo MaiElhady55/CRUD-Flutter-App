@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rise_up_task/core/network/dio_helper.dart';
 import 'package:rise_up_task/core/services/service_locator.dart';
-import 'package:rise_up_task/users/presentation/controller/user_details_bloc/bloc/user_details_bloc.dart';
+import 'package:rise_up_task/users/presentation/controller/users_bloc/users_bloc.dart';
 import 'package:rise_up_task/users/presentation/screens/users_screen.dart';
 
 import 'users/presentation/controller/create_user_bloc/create_user_bloc.dart';
@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => getIt<CreateUserBloc>(),
+        BlocProvider(create: (context) => getIt<CreateUserBloc>()),
+        BlocProvider(create:(context) => getIt<UsersBloc>()..add(GetUsersEvent())
+
 )
       ],
       child: MaterialApp(

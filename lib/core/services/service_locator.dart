@@ -4,9 +4,11 @@ import 'package:rise_up_task/users/data/repository/user_repository.dart';
 import 'package:rise_up_task/users/domain/repository/base_user_repository.dart';
 import 'package:rise_up_task/users/domain/usecases/create_user.dart';
 import 'package:rise_up_task/users/domain/usecases/delete_user.dart';
+import 'package:rise_up_task/users/domain/usecases/edit_user.dart';
 import 'package:rise_up_task/users/domain/usecases/get_user_details.dart';
 import 'package:rise_up_task/users/domain/usecases/get_users.dart';
 import 'package:rise_up_task/users/presentation/controller/create_user_bloc/create_user_bloc.dart';
+import 'package:rise_up_task/users/presentation/controller/edit_user_bloc/edit_user_bloc.dart';
 import 'package:rise_up_task/users/presentation/controller/user_details_bloc/bloc/user_details_bloc.dart';
 import 'package:rise_up_task/users/presentation/controller/users_bloc/users_bloc.dart';
 
@@ -18,6 +20,8 @@ class ServiceLocator {
     getIt.registerFactory(() => UsersBloc(getIt(),getIt()));
     getIt.registerFactory(() => CreateUserBloc(getIt()));
     getIt.registerFactory(() => UserDetailsBloc(getIt()));
+    getIt.registerFactory(() => EditUserBloc(getIt()));
+
 
 
 //Use Case
@@ -25,6 +29,7 @@ class ServiceLocator {
     getIt.registerLazySingleton(() => CreateUserUseCase(getIt()));
     getIt.registerLazySingleton(() => GetUserDetailsUseCase(getIt()));
     getIt.registerLazySingleton(() => DeleteUserUseCase(getIt()));
+    getIt.registerLazySingleton(() => EditUserUseCase(getIt()));
 
 //Repository
     getIt.registerLazySingleton<BaseUserRepository>(
