@@ -70,13 +70,13 @@ class UserRemoteDataSource extends BaseUserRemoteDataSource {
   @override
   Future<void> deleteUser(DeleteUserParameters parameters) async {
  await DioHelper.deleteData(
-        endPoint: '${ApiConstance.endPointUser}/${parameters.userId}');
+        endPoint: ApiConstance.deletePath(parameters.userId));
     
   }
   
   @override
   Future<UserModel> editUser(EditUserParameters parameters) async{
-    Response response = await DioHelper.postData(endPoint: ApiConstance.editPath(parameters.userId), data: {
+    Response response = await DioHelper.patchData(endPoint: ApiConstance.editPath(parameters.userId), data: {
       'name': parameters.name,
       'email': parameters.email,
       'gender': parameters.gender,

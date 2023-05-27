@@ -4,7 +4,6 @@ import 'package:rise_up_task/core/network/dio_helper.dart';
 import 'package:rise_up_task/core/services/service_locator.dart';
 import 'package:rise_up_task/users/presentation/controller/users_bloc/users_bloc.dart';
 import 'package:rise_up_task/users/presentation/screens/users_screen.dart';
-
 import 'users/presentation/controller/create_user_bloc/create_user_bloc.dart';
 
 void main() {

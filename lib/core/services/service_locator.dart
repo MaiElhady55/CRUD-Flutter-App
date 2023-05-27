@@ -20,7 +20,8 @@ class ServiceLocator {
     getIt.registerFactory(() => UsersBloc(getIt(),getIt()));
     getIt.registerFactory(() => CreateUserBloc(getIt()));
     getIt.registerFactory(() => UserDetailsBloc(getIt()));
-    getIt.registerFactory(() => EditUserBloc(getIt()));
+    getIt.registerFactory(() => EditUserBloc(getIt(),getIt(),getIt()));
+
 
 
 

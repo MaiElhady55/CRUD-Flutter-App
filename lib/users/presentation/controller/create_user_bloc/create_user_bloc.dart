@@ -9,20 +9,24 @@ part 'create_user_state.dart';
 
 class CreateUserBloc extends Bloc<CreateUserEvent, CreateUserState> {
   final CreateUserUseCase createUserUseCase;
-  CreateUserBloc(this.createUserUseCase) : super(const CreateUserState()) {
+
+  CreateUserBloc(this.createUserUseCase)
+      : super(const CreateUserState()) {
     on<CreateNewUserEvent>(_createUser);
   }
 
   FutureOr<void> _createUser(
       CreateNewUserEvent event, Emitter<CreateUserState> emit) async {
-        emit(CreateUserLoading());
+    emit(CreateUserLoading());
     final result = await createUserUseCase(CreateUserParameters(
         name: event.name,
         email: event.email,
         gender: event.gender,
         status: event.status));
     result.fold(
-        (l) => emit(CreateUserFailure(createUserMessage:l.errorMessage)),
-        (r) => emit(CreateUserSuccess(user:r)));
+        (l) => emit(CreateUserFailure(createUserMessage: l.errorMessage)),
+        (r) => emit(CreateUserSuccess(user: r)));
+      
+    
   }
 }

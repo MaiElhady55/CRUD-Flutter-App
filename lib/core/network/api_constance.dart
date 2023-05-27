@@ -6,4 +6,5 @@ class ApiConstance {
   static const String endPointUser = 'users';
 
   static String editPath(int id) => '$endPointUser/$id';
+  static String deletePath(int id) => '$endPointUser/$id';
 }

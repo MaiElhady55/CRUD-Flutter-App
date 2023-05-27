@@ -48,14 +48,14 @@ class EditUserScreenBody extends StatelessWidget {
         create: (context) => getIt<EditUserBloc>(),
         child: BlocConsumer<EditUserBloc, EditUserState>(
           listener: (context, state) {
-            if (status is EditUserSuccess) {
+            if (status is EditUserFailure) {
               showMySnackBar(
                   context: context,
-                  text: 'Edit Successfuly',
-                  color: Colors.green);
+                  text: 'Edit Failed',
+                  color: Colors.red);
             } else {
               showMySnackBar(
-                  context: context, text: 'Edit Failed', color: Colors.red);
+                  context: context, text: 'Edit Successfuly', color: Colors.green);
             }
           },
           builder: (context, state) {
@@ -63,7 +63,7 @@ class EditUserScreenBody extends StatelessWidget {
                 child: Form(
                     key: formKey,
                     child: Padding(
-                        padding: const EdgeInsets.all(25.0),
+                        padding:  EdgeInsets.all(height*0.034),
                         child: Column(children: [
                           if (state is EditUserLoading)
                             const LinearProgressIndicator(),
@@ -84,8 +84,8 @@ class EditUserScreenBody extends StatelessWidget {
                                 }
                               },
                               textInputAction: TextInputAction.next),
-                          const SizedBox(
-                            height: 16,
+                           SizedBox(
+                            height: height*0.022,
                           ),
                           CustomTextFormField(
                             controller: emailController,
@@ -105,8 +105,8 @@ class EditUserScreenBody extends StatelessWidget {
                             },
                             textInputAction: TextInputAction.next,
                           ),
-                          const SizedBox(
-                            height: 16,
+                          SizedBox(
+                            height: height*0.022,
                           ),
                           CustomTextFormField(
                               controller: genderController,
@@ -122,8 +122,8 @@ class EditUserScreenBody extends StatelessWidget {
                                 controller: genderController,
                                 items: gender,
                               )),
-                          const SizedBox(
-                            height: 16,
+                          SizedBox(
+                            height: height*0.022,
                           ),
                           CustomTextFormField(
                               controller: statusController,
@@ -140,7 +140,7 @@ class EditUserScreenBody extends StatelessWidget {
                                 controller: statusController,
                               )),
                           SizedBox(
-                            height: 20,
+                            height: height*0.027,
                           ),
                           MainButton(
                               text: 'Edit User',

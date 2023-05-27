@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rise_up_task/core/functions/navigation.dart';
 import 'package:rise_up_task/core/functions/show_toast.dart';
+import 'package:rise_up_task/core/utils/size_config.dart';
 import 'package:rise_up_task/users/presentation/components/custom_dropdownbutton.dart';
 import 'package:rise_up_task/users/presentation/components/custom_textformfield.dart';
 import 'package:rise_up_task/users/presentation/components/main_button.dart';
@@ -24,10 +25,11 @@ class AddUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = SizeConfig.height(context);
+
     return BlocConsumer<CreateUserBloc, CreateUserState>(
       listener: (context, state) {
         if (state is CreateUserFailure) {
-          
           showMySnackBar(
               context: context, text: 'Add Failed', color: Colors.red);
         } else {
@@ -45,7 +47,7 @@ class AddUserScreen extends StatelessWidget {
             child: Form(
                 key: formKey,
                 child: Padding(
-                  padding: const EdgeInsets.all(25.0),
+                  padding:  EdgeInsets.all(height*0.034),
                   child: Column(
                     children: [
                       CustomTextFormField(
@@ -62,8 +64,8 @@ class AddUserScreen extends StatelessWidget {
                             }
                           },
                           textInputAction: TextInputAction.next),
-                      const SizedBox(
-                        height: 16,
+                       SizedBox(
+                        height: height*0.022,
                       ),
                       CustomTextFormField(
                         controller: emailController,
@@ -83,8 +85,8 @@ class AddUserScreen extends StatelessWidget {
                         },
                         textInputAction: TextInputAction.next,
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: height*0.022,
                       ),
                       CustomTextFormField(
                           controller: genderController,
@@ -100,8 +102,8 @@ class AddUserScreen extends StatelessWidget {
                             controller: genderController,
                             items: gender,
                           )),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: height*0.022,
                       ),
                       CustomTextFormField(
                           controller: statusController,
@@ -118,7 +120,7 @@ class AddUserScreen extends StatelessWidget {
                             controller: statusController,
                           )),
                       SizedBox(
-                        height: 20,
+                        height: height*0.027,
                       ),
                       MainButton(
                           text: 'Add User',
@@ -130,10 +132,10 @@ class AddUserScreen extends StatelessWidget {
                                       email: emailController.text,
                                       gender: genderController.text,
                                       status: statusController.text)));
-                              BlocProvider.of<UsersBloc>(context)
-                                  .add(GetUsersEvent());
-                            navigateTo(
-                                context: context, router: const UsersScreen());    
+
+                              navigateTo(
+                                  context: context,
+                                  router: const UsersScreen());
                             }
                           })
                     ],
